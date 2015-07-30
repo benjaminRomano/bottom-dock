@@ -2,6 +2,8 @@
 
 bottom-dock is a generic bottom dock for quick panel development
 
+![image](https://cloud.githubusercontent.com/assets/9221137/8978100/c7a2f7aa-3653-11e5-8d03-b0bd3b0b5824.png)
+
 #### API
 
 ```js
