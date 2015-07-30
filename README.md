@@ -2,6 +2,11 @@
 
 bottom-dock is a generic bottom dock for quick panel development
 
+##### Commands
+* ctrl-k ctrl-t: toggles panel
+* ctrl-k ctrl-r: refreshes window
+* ctrl-k ctrl-c: closes window
+
 ![image](https://cloud.githubusercontent.com/assets/9221137/8978100/c7a2f7aa-3653-11e5-8d03-b0bd3b0b5824.png)
 
 #### API
