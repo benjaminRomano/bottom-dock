@@ -1,0 +1,59 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+
+.bottom-dock {
+
+  .tab-manager {
+    height: 25px;
+
+    .view-button-container {
+      float: right;
+
+      span {
+        vertical-align: middle;
+        padding: 0px;
+        cursor: pointer;
+      }
+
+      .refresh-button {
+        color: @text-color-info;
+
+        &:hover {
+          color: @background-color-info;
+        }
+
+        &:active {
+          color: @text-color-selected;
+        }
+      }
+
+      .delete-button {
+        color: @text-color-error;
+
+        &:hover {
+          color: @background-color-error;
+        }
+
+        &:active {
+          color: @text-color-selected;
+        }
+      }
+    }
+  }
+
+  .pane-manager {
+    height: 250px;
+    min-height: 150px;
+    display: block;
+    background-color:@base-background-color;
+    border: 1px solid @base-border-color;
+
+    .pane-manager-resize-handle {
+      height: 5px;
+      cursor: ns-resize;
+    }
+  }
+}

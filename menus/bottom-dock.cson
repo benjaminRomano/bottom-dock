@@ -1,0 +1,38 @@
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Toggle bottom-dock'
+      'command': 'bottom-dock:toggle'
+    },
+    {
+      'label': 'Delete current pane'
+      'command': 'bottom-dock:delete'
+    }
+    {
+      'label': 'Refresh current pane'
+      'command': 'bottom-dock:refresh'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'bottom-dock'
+      'submenu': [
+        {
+          'label': 'Toggle'
+          'command': 'bottom-dock:toggle'
+        },
+        {
+          'label': 'Remove Current Pane'
+          'command': 'bottom-dock:delete'
+        },
+        {
+          'label': 'Refresh Current Pane'
+          'command': 'bottom-dock:delete'
+        },
+      ]
+    ]
+  }
+]

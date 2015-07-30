@@ -1,0 +1,32 @@
+{
+  "name": "bottom-dock",
+  "main": "./lib/main",
+  "version": "0.0.0",
+  "description": "Generic bottom dock for quick panel development",
+  "keywords": [
+    "generic",
+    "bottom",
+    "dock",
+    "panel"
+  ],
+  "activationCommands": {
+    "atom-workspace": "bottom-dock:toggle"
+  },
+  "repository": "https://github.com/benjaminRomano/bottom-dock",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "space-pen": "^5.1.1"
+  },
+  "providedServices": {
+    "bottom-dock": {
+      "description": "Simple service to add window to bottom dock",
+      "versions": {
+        "0.0.0": "provideBottomDock"
+      }
+    }
+  }
+}
