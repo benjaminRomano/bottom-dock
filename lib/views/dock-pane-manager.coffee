@@ -5,8 +5,8 @@ crypto = require('crypto')
 
 class DockPaneManager extends View
   @content: (params) ->
-    @div =>
-      @div outlet: 'resizeHandle'
+    @div class: 'pane-manager', =>
+      @div outlet: 'resizeHandle', class: 'pane-manager-resize-handle'
 
   initialize: (params) ->
     @panes = []
@@ -14,8 +14,6 @@ class DockPaneManager extends View
     @subscriptions = new CompositeDisposable()
     @emitter = new Emitter()
 
-    @.addClass('pane-manager')
-    @resizeHandle.addClass('pane-manager-resize-handle')
     @handleEvents()
 
     if params and params.panes and params.panes.length

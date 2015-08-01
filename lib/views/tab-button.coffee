@@ -3,12 +3,10 @@
 
 class TabButton extends View
   @content: (params) ->
-    @button click: 'clicked'
+    @button click: 'clicked', class: 'btn'
 
   initialize: (config) ->
     @id = 'tab-button-' + config.id
-    @addClass('btn')
-
     @text(config.name)
     @setActive(config.active)
 

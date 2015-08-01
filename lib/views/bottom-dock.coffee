@@ -6,13 +6,12 @@ TabButton = require('./tab-button')
 
 class BottomDock extends View
   @content: (params) ->
-    @div =>
+    @div class: 'bottom-dock', =>
       @subview 'tabManager', new TabManager()
       @subview 'dockPaneManager', new DockPaneManager()
 
   initialize: (@state) ->
     @subscriptions = new CompositeDisposable()
-    @addClass('bottom-dock')
     @panel = @createPanel()
 
     @subscriptions.add(@tabManager.onTabClicked(@changePane.bind(@)))

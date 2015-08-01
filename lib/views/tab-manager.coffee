@@ -4,23 +4,16 @@ $ = require ('jquery')
 
 class TabManager extends View
   @content: () ->
-    @div =>
-      @div outlet: 'viewButtonContainer', =>
-        @span outlet: 'refreshButton', click: 'refreshClicked'
-        @span outlet: 'deleteButton', click: 'deleteClicked'
-      @div outlet: 'tabContainer'
+    @div class: 'tab-manager', =>
+      @div outlet: 'viewButtonContainer', class: 'view-button-container', =>
+        @span outlet: 'refreshButton', click: 'refreshClicked', class: 'refresh-button icon icon-sync'
+        @span outlet: 'deleteButton', click: 'deleteClicked', class: 'delete-button icon icon-x'
+      @div outlet: 'tabContainer', class: 'tab-container'
 
   initialize: () ->
     @tabs = []
     @subscriptions = new CompositeDisposable()
     @emitter = new Emitter()
-
-    @addClass('tab-manager')
-    @viewButtonContainer.addClass('view-button-container')
-    @refreshButton.addClass('refresh-button icon icon-sync')
-    @deleteButton.addClass('delete-button icon icon-x')
-    @tabContainer.addClass('tab-container')
-
     @currTab = null
 
   addTab: (tab) ->
