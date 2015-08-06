@@ -36,6 +36,6 @@ class BottomDockService {
 ##### How to use
 Create a new package that consumes the BottomDockService
 
-Extend the DockPaneView from the [attom-bottom-dock](https://www.npmjs.com/package/atom-bottom-dock) npm package
+Extend the DockPaneView from the [atom-bottom-dock](https://www.npmjs.com/package/atom-bottom-dock) npm package
 
 Look at [Gulp Manager](https://github.com/benjaminRomano/gulp-manager) for an example on how to use the api
