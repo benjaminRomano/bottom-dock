@@ -9,23 +9,21 @@
     "dock",
     "panel"
   ],
-  "activationCommands": {
-    "atom-workspace": "bottom-dock:toggle"
-  },
   "repository": "https://github.com/benjaminRomano/bottom-dock",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-    "jquery": "^2.1.4",
+    "atom-bottom-dock": "^0.3.0",
     "space-pen": "^5.1.1"
   },
   "providedServices": {
     "bottom-dock": {
       "description": "Simple service to add window to bottom dock",
       "versions": {
-        "0.0.0": "provideBottomDock"
+        "0.0.0": "provideBottomDockV0",
+        "0.1.0": "provideBottomDock"
       }
     }
   }

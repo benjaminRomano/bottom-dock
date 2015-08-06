@@ -2,7 +2,7 @@
 {View} = require('space-pen')
 TabManager = require('./tab-manager')
 DockPaneManager = require('./dock-pane-manager')
-TabButton = require('./tab-button')
+{BasicTabButton} = require('atom-bottom-dock')
 
 class BottomDock extends View
   @content: (params) ->
@@ -18,19 +18,14 @@ class BottomDock extends View
     @subscriptions.add(@tabManager.onDeleteClicked(@deletePane.bind(@)))
     @subscriptions.add(@tabManager.onRefreshClicked(@refreshPane.bind(@)))
 
-  addPane: (pane, name) ->
+  addPane: (pane, tabButton) ->
     @dockPaneManager.addPane(pane)
-
-    config =
-      name: name,
-      id: pane.getId()
-      active: pane.isActive()
-    newTab = new TabButton(config)
-
-    @tabManager.addTab(newTab)
+    @tabManager.addTab(tabButton)
 
     if pane.isActive()
       @changePane(pane.getId())
+    else
+      tabButton.setActive(false)
 
   getPane: (id) ->
     @dockPaneManager.getPane(id)
@@ -67,7 +62,7 @@ class BottomDock extends View
   createPanel: ->
     options =
       item: this,
-      visible: false,
+      visible: true,
       priority: 1000
 
     return atom.workspace.addBottomPanel(options)

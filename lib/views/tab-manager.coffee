@@ -1,6 +1,5 @@
-{View} = require('space-pen')
+{View, $} = require('space-pen')
 {Emitter, CompositeDisposable} = require ('atom')
-$ = require ('jquery')
 
 class TabManager extends View
   @content: () ->
