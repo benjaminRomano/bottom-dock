@@ -1,4 +1,4 @@
-## 0.3.0
+## 0.2.0
 * Added TabButton and a basicTabButton
 * Changed bottom-dock to open on startup
 
