@@ -74,7 +74,10 @@ class DockPaneManager extends View
     $(document).off('mouseup', @resizeStopped)
 
   resizePane: ({pageY, which}) ->
-    height = $(document.body).height() - pageY
+    height = $(document.body).height() - pageY - $('.tab-manager').height()
+
+    height -= $('.status-bar').height() if atom.config.get('bottom-dock.tabsOnBottom') and $('.status-bar')
+
     $('.pane-manager').height(height)
 
   handleEvents: ->

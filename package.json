@@ -23,7 +23,7 @@
       "description": "Simple service to add window to bottom dock",
       "versions": {
         "0.0.0": "provideBottomDockV0",
-        "0.1.0": "provideBottomDock"
+        "0.1.1": "provideBottomDock"
       }
     }
   }

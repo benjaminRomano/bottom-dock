@@ -4,6 +4,11 @@ BottomDockServiceV0 = require('./bottom-dock-service-v0')
 BottomDock = require('./views/bottom-dock')
 
 module.exports =
+  config:
+    tabsOnBottom:
+      type: 'boolean'
+      default: true
+      
   activate: (state) ->
     @bottomDock = new BottomDock()
     @subscriptions = new CompositeDisposable()

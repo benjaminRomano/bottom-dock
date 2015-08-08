@@ -1,3 +1,8 @@
+## 0.2.1
+* Added option to move tabs to bottom
+* Added onDidDeletePane and onDidChangePane events
+* Fixed resizableHandle to adjust to correct height
+
 ## 0.2.0
 * Added TabButton and a basicTabButton
 * Changed bottom-dock to open on startup

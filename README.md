@@ -25,13 +25,14 @@ class BottomDockService {
   refreshPane(id: string): void
   deletePane(id: string): void
   getPane(id: string): Pane //Where Pane extends DockPaneView
-  addPane(pane: Pane, tab: TabButton): void 
+  addPane(pane: Pane, tab: TabButton): void
   getCurrentPane(): Pane
   refreshCurrentPane(): void
   deleteCurrentPane: void
-  destroy: void //For internal use only
+  onDidChangePane(callback: (id: string) => void): Disposable
+  onDidDeletePane(callback: (id: string) => void): Disposable
 }
-````
+```
 
 ##### How to use
 Create a new package that consumes the BottomDockService

@@ -1,4 +1,4 @@
-{CompositeDisposable} = require('atom')
+{CompositeDisposable, Emitter} = require('atom')
 {View} = require('space-pen')
 TabManager = require('./tab-manager')
 DockPaneManager = require('./dock-pane-manager')
@@ -7,16 +7,32 @@ DockPaneManager = require('./dock-pane-manager')
 class BottomDock extends View
   @content: (params) ->
     @div class: 'bottom-dock', =>
-      @subview 'tabManager', new TabManager()
       @subview 'dockPaneManager', new DockPaneManager()
+      @subview 'tabManager', new TabManager()
 
   initialize: (@state) ->
     @subscriptions = new CompositeDisposable()
     @panel = @createPanel()
+    @emitter = new Emitter()
+
+    @moveTabsToBottom(atom.config.get('bottom-dock.tabsOnBottom'))
 
     @subscriptions.add(@tabManager.onTabClicked(@changePane.bind(@)))
     @subscriptions.add(@tabManager.onDeleteClicked(@deletePane.bind(@)))
     @subscriptions.add(@tabManager.onRefreshClicked(@refreshPane.bind(@)))
+    @subscriptions.add(atom.config.observe('bottom-dock.tabsOnBottom', @moveTabsToBottom))
+
+  onDidChangePane: (callback) ->
+    return @emitter.on('pane:changed', callback)
+
+  onDidDeletePane: (callback) ->
+    return @emitter.on('pane:deleted', callback)
+
+  moveTabsToBottom: (toBottom) =>
+    if toBottom
+      @dockPaneManager.insertBefore(@tabManager)
+    else
+      @tabManager.insertBefore(@dockPaneManager)
 
   addPane: (pane, tabButton) ->
     @dockPaneManager.addPane(pane)
@@ -36,6 +52,7 @@ class BottomDock extends View
   changePane: (id) ->
     @dockPaneManager.changePane(id)
     @tabManager.changeTab(id)
+    @emitter.emit('pane:changed', id)
 
   refreshPane: (id) ->
     @dockPaneManager.refreshPane(id)
@@ -44,6 +61,7 @@ class BottomDock extends View
     success = @dockPaneManager.deletePane(id)
     if success
       @tabManager.deleteTab(id)
+    @emitter.emit('pane:deleted', id)
 
   deleteCurrentPane: ->
     currentPane = @dockPaneManager.getCurrentPane()

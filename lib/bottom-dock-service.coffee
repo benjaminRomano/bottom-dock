@@ -28,6 +28,12 @@ class BottomDockService
   deleteCurrentPane: ->
     return @bottomDock.deleteCurrentPane()
 
+  onDidDeletePane: (callback) ->
+    return @bottomDock.onDidDeletePane(callback)
+
+  onDidChangePane: (callback) ->
+    return @bottomDock.onDidChangePane(callback)
+
   destroy: ->
 
 module.exports = BottomDockService
