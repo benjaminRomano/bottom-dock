@@ -5,17 +5,18 @@ DockPaneManager = require('./dock-pane-manager')
 {BasicTabButton} = require('atom-bottom-dock')
 
 class BottomDock extends View
-  @content: (params) ->
+  @content: (config) ->
     @div class: 'bottom-dock', =>
       @subview 'dockPaneManager', new DockPaneManager()
       @subview 'tabManager', new TabManager()
 
-  initialize: (@state) ->
+  initialize: (config) ->
+    config = config ? {}
     @subscriptions = new CompositeDisposable()
-    @panel = @createPanel()
+    @panel = @createPanel startOpen: config.startOpen
     @emitter = new Emitter()
 
-    @moveTabsToBottom(atom.config.get('bottom-dock.tabsOnBottom'))
+    @moveTabsToBottom config.tabsOnBottom
 
     @subscriptions.add(@tabManager.onTabClicked(@changePane.bind(@)))
     @subscriptions.add(@tabManager.onDeleteClicked(@deletePane.bind(@)))
@@ -28,8 +29,8 @@ class BottomDock extends View
   onDidDeletePane: (callback) ->
     return @emitter.on('pane:deleted', callback)
 
-  moveTabsToBottom: (toBottom) =>
-    if toBottom
+  moveTabsToBottom: (tabsOnBottom) =>
+    if tabsOnBottom
       @dockPaneManager.insertBefore(@tabManager)
     else
       @tabManager.insertBefore(@dockPaneManager)
@@ -77,10 +78,10 @@ class BottomDock extends View
 
     @refreshPane(currentPane.getId())
 
-  createPanel: ->
+  createPanel: ({startOpen}) ->
     options =
       item: this,
-      visible: true,
+      visible: startOpen
       priority: 1000
 
     return atom.workspace.addBottomPanel(options)

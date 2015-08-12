@@ -1,3 +1,6 @@
+## 0.2.2
+* Added option to start panel open or closed
+
 ## 0.2.1
 * Added option to move tabs to bottom
 * Added onDidDeletePane and onDidChangePane events
