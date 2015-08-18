@@ -11,11 +11,7 @@
         {
           'label': 'Remove Current Pane'
           'command': 'bottom-dock:delete'
-        },
-        {
-          'label': 'Refresh Current Pane'
-          'command': 'bottom-dock:delete'
-        },
+        }
       ]
     ]
   }

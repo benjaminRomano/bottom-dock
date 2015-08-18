@@ -5,35 +5,27 @@ class BottomDockService
     @bottomDock.toggle()
 
   changePane: (id) ->
-    @bottomDock.changePane(id)
-
-  refreshPane: (id) ->
-    @bottomDock.refreshPane(id)
+    @bottomDock.changePane id
 
   deletePane: (id) ->
-    @bottomDock.deletePane(id)
+    @bottomDock.deletePane id
 
   getPane: (id) ->
-    return @bottomDock.getPane(id)
+    return @bottomDock.getPane id
 
-  addPane: (pane, tabButton) ->
-    @bottomDock.addPane(pane, tabButton)
+  addPane: (pane, title) ->
+    @bottomDock.addPane pane, title
 
   getCurrentPane: ->
     return @bottomDock.getCurrentPane()
-
-  refreshCurrentPane: ->
-    return @bottomDock.refreshCurrentPane()
 
   deleteCurrentPane: ->
     return @bottomDock.deleteCurrentPane()
 
   onDidDeletePane: (callback) ->
-    return @bottomDock.onDidDeletePane(callback)
+    return @bottomDock.onDidDeletePane callback
 
   onDidChangePane: (callback) ->
-    return @bottomDock.onDidChangePane(callback)
-
-  destroy: ->
+    return @bottomDock.onDidChangePane callback
 
 module.exports = BottomDockService

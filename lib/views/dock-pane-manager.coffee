@@ -4,16 +4,13 @@ crypto = require('crypto')
 
 class DockPaneManager extends View
   @content: (params) ->
-    @div class: 'pane-manager', =>
-      @div outlet: 'resizeHandle', class: 'pane-manager-resize-handle'
+    @div class: 'pane-manager'
 
   initialize: (params) ->
     @panes = []
     @currPane = null
     @subscriptions = new CompositeDisposable()
     @emitter = new Emitter()
-
-    @handleEvents()
 
     if params and params.panes and params.panes.length
       for pane in params.panes
@@ -31,11 +28,6 @@ class DockPaneManager extends View
         @currPane = pane
       else
         pane.setActive(false)
-
-  refreshPane: (id) ->
-    for pane in @panes
-      if pane.getId() == String(id)
-        pane.refresh()
 
   getPane: (id) ->
     return @panes.filter((p) ->
@@ -65,27 +57,9 @@ class DockPaneManager extends View
 
     return true
 
-  resizeStarted: =>
-    $(document).on('mousemove', @resizePane)
-    $(document).on('mouseup', @resizeStopped)
-
-  resizeStopped: =>
-    $(document).off('mousemove', @resizePane)
-    $(document).off('mouseup', @resizeStopped)
-
-  resizePane: ({pageY, which}) ->
-    height = $(document.body).height() - pageY - $('.tab-manager').height()
-
-    height -= $('.status-bar').height() if atom.config.get('bottom-dock.tabsOnBottom') and $('.status-bar')
-
-    $('.pane-manager').height(height)
-
-  handleEvents: ->
-    @on 'mousedown', '.pane-manager-resize-handle', (e) => @resizeStarted(e)
 
   destroy: ->
     @subscriptions.dispose()
-    @resizeStopped()
     for pane in @panes
       pane.destroy()
 

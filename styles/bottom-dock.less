@@ -5,13 +5,54 @@
 @import "ui-variables";
 
 .bottom-dock {
-
   .tab-manager {
+    .tab-button {
+      background: @button-background-color;
+      text-shadow: none;
+      border: 1px solid @button-border-color;
+      border-left: 0;
+      height: 22px;
 
-    .view-button-container {
+      &:first-child {
+        border-left: 1px solid #181818;
+      }
+
+      &:hover {
+        .delete-button {
+          visibility: visible;
+        }
+      }
+
+      &.selected {
+        background-color: @button-background-color-selected;
+        color: @text-color-selected;
+      }
+    }
+  }
+
+  .bottom-dock-header {
+    background-color: @panel-heading-background-color;
+    border: 1px solid @base-border-color;
+    border-top: 0;
+    border-bottom: 0;
+    padding-bottom: 4px;
+
+    .dock-resize-handle {
+      height: 4px;
+      cursor: ns-resize;
+    }
+
+    .title {
+      color: @text-color-highlight;
+      padding-left: 10px;
+      vertical-align: middle;
+    }
+
+    .button-container {
       float: right;
 
       span {
+        padding-left: 10px;
         vertical-align: middle;
         padding: 0px;
         cursor: pointer;
@@ -45,14 +86,9 @@
 
   .pane-manager {
     height: 250px;
-    min-height: 150px;
     display: block;
-    background-color:@base-background-color;
+    background-color:@inset-panel-background-color;
     border: 1px solid @base-border-color;
-
-    .pane-manager-resize-handle {
-      height: 5px;
-      cursor: ns-resize;
-    }
+    border-bottom: 0px;
   }
 }

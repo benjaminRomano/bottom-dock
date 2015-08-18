@@ -1,12 +1,10 @@
 {View, $} = require('space-pen')
 {Emitter, CompositeDisposable} = require ('atom')
+TabButton = require './tab-button'
 
 class TabManager extends View
   @content: () ->
     @div class: 'tab-manager', =>
-      @div outlet: 'viewButtonContainer', class: 'view-button-container', =>
-        @span outlet: 'refreshButton', click: 'refreshClicked', class: 'refresh-button icon icon-sync'
-        @span outlet: 'deleteButton', click: 'deleteClicked', class: 'delete-button icon icon-x'
       @div outlet: 'tabContainer', class: 'tab-container'
 
   initialize: () ->
@@ -15,9 +13,18 @@ class TabManager extends View
     @emitter = new Emitter()
     @currTab = null
 
-  addTab: (tab) ->
+  getCurrentTabTitle: ->
+    @currTab?.title ? ""
+
+  addTab: (config) ->
+    tab = new TabButton(config)
     @tabContainer.append(tab)
     @tabs.push(tab)
+
+    if @tabs.length == 1
+      @hide()
+    else
+      @show()
 
     @subscriptions.add(tab.onDidClick((id) =>
       @emitter.emit('tab:clicked', id)
@@ -39,6 +46,12 @@ class TabManager extends View
     if not @currTab && @tabs.length
       @changeTab(@tabs[@tabs.length - 1].getId())
 
+    if @tabs.length == 1
+      @hide()
+    else
+      @show()
+
+
   changeTab: (id) ->
     for tab in @tabs
       if tab.getId() == String(id)
@@ -47,19 +60,12 @@ class TabManager extends View
       else
         tab.setActive(false)
 
-  refreshClicked: =>
-    if @currTab
-      @emitter.emit('refresh:clicked', @currTab.getId())
-
   deleteClicked: =>
     if @currTab
       @emitter.emit('delete:clicked', @currTab.getId())
 
   onTabClicked: (callback) ->
     return @emitter.on('tab:clicked', callback)
-
-  onRefreshClicked: (callback) ->
-    return @emitter.on('refresh:clicked', callback)
 
   onDeleteClicked: (callback) ->
     return @emitter.on('delete:clicked', callback)
