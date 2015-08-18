@@ -23,10 +23,7 @@ class TabButton extends View
 
   setActive: (value) ->
     @active = value
-    if @active
-      @addClass 'selected'
-    else
-      @removeClass 'selected'
+    if @active then @addClass 'selected' else @removeClass 'selected'
 
   onDidClick: (callback) ->
     @emitter.on 'tab:button:clicked', callback

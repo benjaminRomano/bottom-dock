@@ -17,7 +17,7 @@ class BottomDockServiceV1
 
   addPane: (pane, tabButton) ->
     # Cannot extract title from tabButton using id instead
-    @bottomDock.addPane(pane, pane.getId())
+    @bottomDock.addPane pane, pane.getId()
 
   getCurrentPane: ->
     @bottomDock.getCurrentPane()

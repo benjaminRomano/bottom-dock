@@ -1,8 +1,8 @@
-{CompositeDisposable} = require('atom')
-BottomDockService = require('./bottom-dock-service')
-BottomDockServiceV1 = require('./bottom-dock-service-v1')
-BottomDockServiceV0 = require('./bottom-dock-service-v0')
-BottomDock = require('./views/bottom-dock')
+{CompositeDisposable} = require 'atom'
+BottomDockService = require './bottom-dock-service'
+BottomDockServiceV1 = require './bottom-dock-service-v1'
+BottomDockServiceV0 = require './bottom-dock-service-v0'
+BottomDock = require './views/bottom-dock'
 
 module.exports =
   config:
@@ -13,26 +13,24 @@ module.exports =
 
   activate: ->
     config =
-      startOpen: atom.config.get('bottom-dock.startOpen')
+      startOpen: atom.config.get 'bottom-dock.startOpen'
 
-    @bottomDock = new BottomDock(config)
+    @bottomDock = new BottomDock config
     @subscriptions = new CompositeDisposable()
 
-    @subscriptions.add(atom.commands.add('atom-workspace',
+    @subscriptions.add atom.commands.add 'atom-workspace',
       'bottom-dock:toggle': => @bottomDock.toggle()
-    ))
-    @subscriptions.add(atom.commands.add('atom-workspace',
-      'bottom-dock:delete': => @bottomDock.deleteCurrentPane()
-    ))
+    @subscriptions.add atom.commands.add 'atom-workspace',
+     'bottom-dock:delete': => @bottomDock.deleteCurrentPane()
 
   provideBottomDockService: ->
-    @bottomDockService = new BottomDockService(@bottomDock)
+    @bottomDockService = new BottomDockService @bottomDock
 
   provideBottomDockServiceV1: ->
-    @bottomDockServiceV1 = new BottomDockServiceV1(@bottomDock)
+    @bottomDockServiceV1 = new BottomDockServiceV1 @bottomDock
 
   provideBottomDockServiceV0: ->
-    @bottomDockServiceV0 = new BottomDockServiceV0(@bottomDock)
+    @bottomDockServiceV0 = new BottomDockServiceV0 @bottomDock
 
   deactivate: ->
     @subscriptions.dispose()

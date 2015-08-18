@@ -13,7 +13,7 @@ class BottomDockServiceV0
     @bottomDock.deletePane id
 
   getPane: (id) ->
-    return @bottomDock.getPane id
+    @bottomDock.getPane id
 
   addPane: (pane, title) ->
     tabConfig =
@@ -24,11 +24,11 @@ class BottomDockServiceV0
     @bottomDock.addPane pane, tabConfig
 
   getCurrentPane: ->
-    return @bottomDock.getCurrentPane()
+    @bottomDock.getCurrentPane()
 
   refreshCurrentPane: ->
 
   deleteCurrentPane: ->
-    return @bottomDock.deleteCurrentPane()
+    @bottomDock.deleteCurrentPane()
 
 module.exports = BottomDockServiceV0

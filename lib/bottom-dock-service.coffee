@@ -11,21 +11,21 @@ class BottomDockService
     @bottomDock.deletePane id
 
   getPane: (id) ->
-    return @bottomDock.getPane id
+    @bottomDock.getPane id
 
   addPane: (pane, title) ->
     @bottomDock.addPane pane, title
 
   getCurrentPane: ->
-    return @bottomDock.getCurrentPane()
+    @bottomDock.getCurrentPane()
 
   deleteCurrentPane: ->
-    return @bottomDock.deleteCurrentPane()
+    @bottomDock.deleteCurrentPane()
 
   onDidDeletePane: (callback) ->
-    return @bottomDock.onDidDeletePane callback
+    @bottomDock.onDidDeletePane callback
 
   onDidChangePane: (callback) ->
-    return @bottomDock.onDidChangePane callback
+    @bottomDock.onDidChangePane callback
 
 module.exports = BottomDockService

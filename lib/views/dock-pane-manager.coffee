@@ -1,6 +1,5 @@
-{View, $} = require('space-pen')
-{Emitter, CompositeDisposable} = require('atom')
-crypto = require('crypto')
+{View, $} = require 'space-pen'
+{Emitter, CompositeDisposable} = require 'atom'
 
 class DockPaneManager extends View
   @content: (params) ->
@@ -12,55 +11,56 @@ class DockPaneManager extends View
     @subscriptions = new CompositeDisposable()
     @emitter = new Emitter()
 
-    if params and params.panes and params.panes.length
-      for pane in params.panes
-        @addPane(pane)
+    if params?.panes?.length
+      @addPane pane  for pane in params.panes
 
   addPane: (pane) ->
-    @panes.push(pane)
-    @append(pane)
+    @panes.push pane
+    @append pane
+
+    # Adjust height when tab-manager is shown again
+    if @panes.length == 2
+      @height(@height() - $('.tab-manager').height())
+
     return pane
 
   changePane: (id) ->
     for pane in @panes
       if pane.getId() == String(id)
-        pane.setActive(true)
+        pane.setActive true
         @currPane = pane
       else
-        pane.setActive(false)
+        pane.setActive false
 
   getPane: (id) ->
-    return @panes.filter((p) ->
-      p.getId() == String(id)
-    )[0]
+    (pane for pane in @panes when pane.getId() == String(id))[0]
 
   getCurrentPane: ->
     return @currPane
 
   deletePane: (id) ->
-    pane = @panes.filter((p) -> return p.getId() == String(id))[0]
+    pane = (pane for pane in @panes when pane.getId() == String(id))[0]
 
-    if not pane
-      return false
+    return false unless pane
 
-    if @currPane.getId() == String(id)
-      @currPane = null
+    @currPane = null if @currPane.getId() == String(id)
 
     pane.destroy()
 
-    @panes = @panes.filter((v) ->
-      return v.getId() != String(id)
-    )
+    @panes = (pane for pane in @panes when pane.getId() != String(id))
 
     if not @currPane and @panes.length
-      @changePane(@panes[@panes.length - 1].getId())
+      @changePane @panes[@panes.length - 1].getId()
+
+
+    # Adjust height when tab-manager is hidden
+    if @panes.length == 1
+      @height(@height() + $('.tab-manager').height())
 
     return true
 
-
   destroy: ->
     @subscriptions.dispose()
-    for pane in @panes
-      pane.destroy()
+    pane.destroy() for pane in @panes
 
 module.exports = DockPaneManager

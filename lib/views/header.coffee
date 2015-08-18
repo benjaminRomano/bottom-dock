@@ -38,7 +38,7 @@ class Header extends View
     $('.pane-manager').height(height)
 
   handleEvents: ->
-    @on 'mousedown', '.dock-resize-handle', (e) => @resizeStarted(e)
+    @on 'mousedown', '.dock-resize-handle', (e) => @resizeStarted e
 
   destroy: ->
     @resizeStopped()

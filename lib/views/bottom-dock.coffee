@@ -18,61 +18,56 @@ class BottomDock extends View
     @panel = @createPanel startOpen: config.startOpen
     @emitter = new Emitter()
 
-    @subscriptions.add(@tabManager.onTabClicked(@changePane))
-    @subscriptions.add(@tabManager.onDeleteClicked(@deletePane))
-    @subscriptions.add(@header.onDidClickDelete(@deleteCurrentPane))
+    @subscriptions.add @tabManager.onTabClicked @changePane
+    @subscriptions.add @tabManager.onDeleteClicked @deletePane
+    @subscriptions.add @header.onDidClickDelete @deleteCurrentPane
 
   onDidChangePane: (callback) ->
-    return @emitter.on('pane:changed', callback)
+    return @emitter.on 'pane:changed', callback
 
   onDidDeletePane: (callback) ->
-    return @emitter.on('pane:deleted', callback)
+    return @emitter.on 'pane:deleted', callback
 
   addPane: (pane, title) ->
     @panel.show()
-    @dockPaneManager.addPane(pane)
+    @dockPaneManager.addPane pane
 
     config =
       title: title
       id: pane.getId()
 
-    @tabManager.addTab(config)
+    @tabManager.addTab config
 
     if pane.isActive()
-      @changePane(pane.getId())
+      @changePane pane.getId()
     else
-      tabButton.setActive(false)
+      tabButton.setActive false
 
   getPane: (id) ->
-    @dockPaneManager.getPane(id)
+    @dockPaneManager.getPane id
 
   getCurrentPane: ->
     @dockPaneManager.getCurrentPane()
 
   changePane: (id) =>
-    @dockPaneManager.changePane(id)
-    @tabManager.changeTab(id)
+    @dockPaneManager.changePane id
+    @tabManager.changeTab id
     @header.setTitle @tabManager.getCurrentTabTitle()
-    @emitter.emit('pane:changed', id)
+    @emitter.emit 'pane:changed', id
 
   deletePane: (id) =>
-    success = @dockPaneManager.deletePane(id)
-    if success
-      @tabManager.deleteTab(id)
+    success = @dockPaneManager.deletePane id
+    @tabManager.deleteTab id if success
 
-    unless @dockPaneManager.getCurrentPane()
-      @panel.hide()
+    @panel.hide() unless @dockPaneManager.getCurrentPane()
 
-
-
-    @emitter.emit('pane:deleted', id)
+    @emitter.emit 'pane:deleted', id
 
   deleteCurrentPane: =>
     currentPane = @dockPaneManager.getCurrentPane()
-    if not currentPane
-      return
+    return unless currentPane
 
-    @deletePane(currentPane.getId())
+    @deletePane currentPane.getId()
 
   createPanel: ({startOpen}) ->
     options =
@@ -80,7 +75,7 @@ class BottomDock extends View
       visible: startOpen
       priority: 1000
 
-    return atom.workspace.addBottomPanel(options)
+    return atom.workspace.addBottomPanel options
 
   toggle: ->
     if not @panel.isVisible() and @dockPaneManager.getCurrentPane()
