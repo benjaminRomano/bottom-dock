@@ -2,7 +2,6 @@
 {View} = require 'space-pen'
 TabManager = require './tab-manager'
 DockPaneManager = require './dock-pane-manager'
-{BasicTabButton} = require 'atom-bottom-dock'
 Header = require './header'
 
 class BottomDock extends View
@@ -57,9 +56,14 @@ class BottomDock extends View
 
   deletePane: (id) =>
     success = @dockPaneManager.deletePane id
-    @tabManager.deleteTab id if success
+    return unless success
+    
+    @tabManager.deleteTab id
 
-    @panel.hide() unless @dockPaneManager.getCurrentPane()
+    if @dockPaneManager.getCurrentPane()
+      @header.setTitle @tabManager.getCurrentTabTitle()
+    else
+      @panel.hide()
 
     @emitter.emit 'pane:deleted', id
 
