@@ -1,3 +1,7 @@
+## 0.3.0
+* Major styling changes
+* Removed refresh functionality
+
 ## 0.2.2
 * Added option to start panel open or closed
 
