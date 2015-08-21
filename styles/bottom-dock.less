@@ -58,18 +58,6 @@
         cursor: pointer;
       }
 
-      .refresh-button {
-        color: @text-color-info;
-
-        &:hover {
-          color: @background-color-info;
-        }
-
-        &:active {
-          color: @text-color-selected;
-        }
-      }
-
       .delete-button {
         color: @text-color-error;
 
@@ -91,5 +79,29 @@
     background-color:@inset-panel-background-color;
     border: 1px solid @base-border-color;
     border-bottom: 0px;
+  }
+
+
+  .table-container {
+    overflow: auto;
+    flex: 1 1;
+
+    table {
+      table-layout:fixed;
+
+      td {
+        cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        min-width: 20px;
+      }
+      th {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-width: 20px;
+        font-weight: normal;
+      }
+    }
   }
 }
