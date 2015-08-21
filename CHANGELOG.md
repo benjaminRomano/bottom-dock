@@ -1,3 +1,6 @@
+## 0.3.1
+* Fixed button heights for some atom themes
+
 ## 0.3.0
 * Major styling changes
 * Removed refresh functionality
