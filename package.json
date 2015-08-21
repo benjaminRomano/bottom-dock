@@ -1,7 +1,7 @@
 {
   "name": "bottom-dock",
   "main": "./lib/main",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Generic bottom dock for quick panel development",
   "keywords": [
     "generic",
