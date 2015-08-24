@@ -21,11 +21,14 @@ class BottomDock extends View
     @subscriptions.add @tabManager.onDeleteClicked @deletePane
     @subscriptions.add @header.onDidClickDelete @deleteCurrentPane
 
+  onDidFinishResizing: (callback) ->
+    @header.onDidFinishResizing callback
+
   onDidChangePane: (callback) ->
-    return @emitter.on 'pane:changed', callback
+    @emitter.on 'pane:changed', callback
 
   onDidDeletePane: (callback) ->
-    return @emitter.on 'pane:deleted', callback
+    @emitter.on 'pane:deleted', callback
 
   addPane: (pane, title) ->
     @panel.show()
@@ -57,7 +60,7 @@ class BottomDock extends View
   deletePane: (id) =>
     success = @dockPaneManager.deletePane id
     return unless success
-    
+
     @tabManager.deleteTab id
 
     if @dockPaneManager.getCurrentPane()

@@ -30,12 +30,18 @@ class Header extends View
   resizeStopped: =>
     $(document).off 'mousemove', @resizePane
     $(document).off 'mouseup', @resizeStopped
+    @emitter.emit 'header:resize:finished'
+
+  onDidFinishResizing: (callback) =>
+    @emitter.on 'header:resize:finished', callback
 
   resizePane: ({pageY, which}) ->
     height = $(document.body).height() - pageY - $('.tab-manager').height() - $('.bottom-dock-header').height()
     height -= $('.status-bar').height() if $('.status-bar')
 
     $('.pane-manager').height(height)
+    $('.pane-manager').trigger 'update'
+    $('.pane-manager').on 'update', ->
 
   handleEvents: ->
     @on 'mousedown', '.dock-resize-handle', (e) => @resizeStarted e

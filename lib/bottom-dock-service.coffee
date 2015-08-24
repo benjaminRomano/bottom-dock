@@ -28,4 +28,7 @@ class BottomDockService
   onDidChangePane: (callback) ->
     @bottomDock.onDidChangePane callback
 
+  onDidFinishResizing: (callback) ->
+    @bottomDock.onDidFinishResizing callback
+
 module.exports = BottomDockService

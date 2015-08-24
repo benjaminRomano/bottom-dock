@@ -1,0 +1,172 @@
+@import "ui-variables";
+
+@headerBackground: @inset-panel-background-color;
+@overallBorder: @tool-panel-border-color solid 1px;
+@bodyBackground: @base-background-color;
+@packageName: 'bottom-dock';
+
+.slick-header.ui-state-default, .slick-headerrow.ui-state-default {
+  width: 100%;
+  overflow: hidden;
+  border-left: 0px;
+}
+
+.slick-header-columns, .slick-headerrow-columns {
+  position: relative;
+  white-space: nowrap;
+  cursor: default;
+  overflow: hidden;
+}
+
+.slick-header-column.ui-state-default {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 16px;
+  line-height: 1em;
+  margin: 0;
+  padding: 4px;
+  border: @overallBorder;
+  border-left: 0px;
+  border-top: 0px;
+  border-bottom: 0px;
+  float: left;
+}
+
+.slick-headerrow-column.ui-state-default {
+  padding: 4px;
+}
+
+.slick-header-column-sorted {
+}
+
+.slick-sort-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 5px;
+  margin-left: 4px;
+}
+
+.slick-sort-indicator-desc {
+  background: url("atom://@{packageName}/images/sort-desc.gif");
+}
+
+.slick-sort-indicator-asc {
+  background: url("atom://@{packageName}/images/sort-asc.gif");
+}
+
+.slick-resizable-handle {
+  cursor: ew-resize;
+  display: block;
+  font-size: 0.1px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 4px;
+}
+
+.slick-sortable-placeholder {
+}
+
+.grid-canvas {
+  position: relative;
+  outline: 0;
+}
+
+.slick-row.ui-widget-content, .slick-row.ui-state-active {
+  position: absolute;
+  border: 0;
+  width: 100%;
+
+  &:hover {
+    background: lighten( desaturate(@headerBackground, 60%), 10% );
+  }
+}
+
+
+.slick-cell, .slick-headerrow-column {
+  position: absolute;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+  z-index: 1;
+  padding: 1px 2px 2px 1px;
+  margin: 0;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.slick-group {
+}
+
+.slick-group-toggle {
+  display: inline-block;
+}
+
+.slick-cell.highlighted {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.slick-cell.flashing {
+  border: 1px solid red !important;
+}
+
+.slick-cell.editable {
+  z-index: 11;
+  overflow: visible;
+  border-color: black;
+  border-style: solid;
+}
+
+.slick-cell:focus {
+  outline: none;
+}
+
+.slick-reorder-proxy {
+  display: inline-block;
+  opacity: 0.15;
+  cursor: move;
+}
+
+.slick-reorder-guide {
+  display: inline-block;
+  height: 2px;
+  opacity: 0.7;
+}
+
+.slick-selection {
+  z-index: 10;
+  position: absolute;
+  border: 2px dashed black;
+}
+
+
+.ui-widget-content {
+    border: @overallBorder;
+    background: @bodyBackground 50% 50% repeat-x;
+}
+.ui-widget-header {
+    border: @overallBorder;
+    background: @headerBackground 50% 50% repeat-x;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+    border: @overallBorder;
+    background: @headerBackground 50% 50% repeat-x;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+    border: 1px solid #999999;
+    background: @headerBackground 50% 50% repeat-x;
+}

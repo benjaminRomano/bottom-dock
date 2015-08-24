@@ -29,6 +29,7 @@ class BottomDockService {
   deleteCurrentPane: void
   onDidChangePane(callback: (id: string) => void): Disposable
   onDidDeletePane(callback: (id: string) => void): Disposable
+  onDidFinishResizing(callback: () => void): Disposable
 }
 ```
 

@@ -1,3 +1,8 @@
+## 0.3.2
+* Added onDidFinishResizing event
+* Minor styling changes
+* Replaced tablesorter with slickgrid
+
 ## 0.3.1
 * Fixed button heights for some atom themes
 

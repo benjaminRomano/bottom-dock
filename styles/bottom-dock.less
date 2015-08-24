@@ -5,14 +5,16 @@
 @import "ui-variables";
 
 .bottom-dock {
+
   .tab-manager {
     .tab-button {
       background: @button-background-color;
       text-shadow: none;
       border: 1px solid @button-border-color;
       border-left: 0;
+      border-radius: 0;
+      height: initial;
       line-height: 1.8em;
-      height: 22px;
 
       &:first-child {
         border-left: 1px solid #181818;
@@ -77,7 +79,7 @@
     height: 250px;
     display: block;
     overflow: hidden;
-    background-color:@inset-panel-background-color;
+    background-color:@base-background-color;
     border: 1px solid @base-border-color;
     border-bottom: 0px;
   }
