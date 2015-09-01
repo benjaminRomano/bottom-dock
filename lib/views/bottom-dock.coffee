@@ -31,6 +31,7 @@ class BottomDock extends View
     @emitter.on 'pane:deleted', callback
 
   addPane: (pane, title) ->
+    @panel.show()
     @dockPaneManager.addPane pane
 
     config =
