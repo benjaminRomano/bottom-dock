@@ -1,5 +1,9 @@
+## 0.3.4
+* Updated stylings
+
 ## 0.3.3
 * Fixed bug where bottom-dock wasn't starting closed when startOpen was false
+
 ## 0.3.2
 * Added onDidFinishResizing event
 * Minor styling changes
