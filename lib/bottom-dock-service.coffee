@@ -1,6 +1,9 @@
 class BottomDockService
   constructor: (@bottomDock) ->
 
+  isActive: ->
+    @bottomDock.active
+
   toggle: ->
     @bottomDock.toggle()
 
@@ -30,5 +33,8 @@ class BottomDockService
 
   onDidFinishResizing: (callback) ->
     @bottomDock.onDidFinishResizing callback
+
+  onDidToggle: (callback) ->
+    @bottomDock.onDidToggle callback
 
 module.exports = BottomDockService

@@ -4,7 +4,7 @@ bottom-dock is an extendable panel which helps simplify creating panels.
 
 Features:
 * Hide/Show panel
-* Reize panel
+* Resize panel
 * Multiple panes
 * Manages active tab and pane
 * Easy add/delete pane
@@ -20,6 +20,7 @@ Commands:
 
 ```js
 class BottomDockService {
+  isActive(): boolean
   toggle(): void
   changePane(id: string): void
   deletePane(id: string): void
@@ -30,6 +31,7 @@ class BottomDockService {
   onDidChangePane(callback: (id: string) => void): Disposable
   onDidDeletePane(callback: (id: string) => void): Disposable
   onDidFinishResizing(callback: () => void): Disposable
+  onDidToggle(callback: () => void): Disposable
 }
 ```
 

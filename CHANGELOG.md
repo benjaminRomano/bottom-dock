@@ -1,3 +1,6 @@
+## 0.3.6
+* Added isActive property and onDidToggle to bottom dock service
+
 ## 0.3.5
 * Fixed height for toolbar
 

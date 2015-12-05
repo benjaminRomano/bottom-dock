@@ -14,6 +14,8 @@ class BottomDock extends View
   initialize: (config) ->
     config = config ? {}
     @subscriptions = new CompositeDisposable()
+    @active = false
+
     @panel = @createPanel startOpen: config.startOpen
     @emitter = new Emitter()
 
@@ -29,6 +31,9 @@ class BottomDock extends View
 
   onDidDeletePane: (callback) ->
     @emitter.on 'pane:deleted', callback
+
+  onDidToggle: (callback) ->
+    @emitter.on 'pane:toggled', callback
 
   addPane: (pane, title) ->
     @dockPaneManager.addPane pane
@@ -76,6 +81,8 @@ class BottomDock extends View
     @deletePane currentPane.getId()
 
   createPanel: ({startOpen}) ->
+    @active = startOpen
+
     options =
       item: this,
       visible: startOpen
@@ -88,6 +95,9 @@ class BottomDock extends View
       @panel.show()
     else
       @panel.hide()
+
+    @active = !@active
+    @emitter.emit 'pane:toggled', @active
 
   destroy: ->
     @subscriptions.dispose()
