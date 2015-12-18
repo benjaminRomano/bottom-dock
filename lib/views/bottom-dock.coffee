@@ -70,6 +70,7 @@ class BottomDock extends View
     if @dockPaneManager.getCurrentPane()
       @header.setTitle @tabManager.getCurrentTabTitle()
     else
+      @active = false;
       @panel.hide()
 
     @emitter.emit 'pane:deleted', id
@@ -92,11 +93,12 @@ class BottomDock extends View
 
   toggle: ->
     if not @panel.isVisible() and @dockPaneManager.getCurrentPane()
+      @active = true
       @panel.show()
     else
+      @active = false
       @panel.hide()
 
-    @active = !@active
     @emitter.emit 'pane:toggled', @active
 
   destroy: ->

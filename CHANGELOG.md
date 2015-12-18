@@ -1,3 +1,6 @@
+## 0.3.7
+* Fixed isActive being incorrect after closing all panes
+
 ## 0.3.6
 * Added isActive property and onDidToggle to bottom dock service
 
