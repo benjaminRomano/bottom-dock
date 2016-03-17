@@ -32,6 +32,9 @@ class BottomDock extends View
   onDidDeletePane: (callback) ->
     @emitter.on 'pane:deleted', callback
 
+  onDidAddPane: (callback) ->
+    @emitter.on 'pane:added', callback
+
   onDidToggle: (callback) ->
     @emitter.on 'pane:toggled', callback
 
@@ -48,6 +51,8 @@ class BottomDock extends View
       @changePane pane.getId()
     else
       tabButton.setActive false
+
+    @emitter.emit 'pane:added', pane.getId()
 
   getPane: (id) ->
     @dockPaneManager.getPane id
@@ -70,8 +75,8 @@ class BottomDock extends View
     if @dockPaneManager.getCurrentPane()
       @header.setTitle @tabManager.getCurrentTabTitle()
     else
-      @active = false;
-      @panel.hide()
+      @active = false
+      @toggle()
 
     @emitter.emit 'pane:deleted', id
 
@@ -100,6 +105,8 @@ class BottomDock extends View
       @panel.hide()
 
     @emitter.emit 'pane:toggled', @active
+
+  paneCount: -> @dockPaneManager.paneCount()
 
   destroy: ->
     @subscriptions.dispose()

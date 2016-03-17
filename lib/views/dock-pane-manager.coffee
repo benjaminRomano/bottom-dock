@@ -59,6 +59,9 @@ class DockPaneManager extends View
 
     return true
 
+  paneCount: ->
+    @panes.length
+
   destroy: ->
     @subscriptions.dispose()
     pane.destroy() for pane in @panes

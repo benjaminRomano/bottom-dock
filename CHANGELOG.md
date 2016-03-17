@@ -1,3 +1,8 @@
+## 0.4.0
+* Added status bar element to display status of bottom-dock.
+* Added paneCount and onDidAddPane to bottom-dock-service
+* Fixed bug with deleting pane not calling toggle function
+
 ## 0.3.7
 * Fixed isActive being incorrect after closing all panes
 

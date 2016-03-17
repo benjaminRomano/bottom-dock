@@ -14,7 +14,7 @@ Commands:
 * ctrl-k ctrl-r: refreshes window
 * ctrl-k ctrl-c: closes window
 
-![image](https://cloud.githubusercontent.com/assets/9221137/9417752/61c4f7c6-4814-11e5-9e3f-13120ae032ea.png)
+![image](https://cloud.githubusercontent.com/assets/9221137/13841672/4fcc555e-ebf8-11e5-8cd3-e99571e3de9d.png)
 
 #### BottomDockService API
 
@@ -30,8 +30,10 @@ class BottomDockService {
   deleteCurrentPane: void
   onDidChangePane(callback: (id: string) => void): Disposable
   onDidDeletePane(callback: (id: string) => void): Disposable
+  onDidAddPane(callback: (id: string) => void): Disposable
   onDidFinishResizing(callback: () => void): Disposable
   onDidToggle(callback: () => void): Disposable
+  paneCount(): number
 }
 ```
 

@@ -28,6 +28,9 @@ class BottomDockService
   onDidDeletePane: (callback) ->
     @bottomDock.onDidDeletePane callback
 
+  onDidAddPane: (callback) ->
+    @bottomDock.onDidAddPane callback
+
   onDidChangePane: (callback) ->
     @bottomDock.onDidChangePane callback
 
@@ -36,5 +39,8 @@ class BottomDockService
 
   onDidToggle: (callback) ->
     @bottomDock.onDidToggle callback
-
+  
+  paneCount: ->
+    @bottomDock.paneCount()
+  
 module.exports = BottomDockService
