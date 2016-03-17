@@ -16,8 +16,8 @@ class BottomDockService
   getPane: (id) ->
     @bottomDock.getPane id
 
-  addPane: (pane, title) ->
-    @bottomDock.addPane pane, title
+  addPane: (pane, title, isInitial) ->
+    @bottomDock.addPane pane, title, isInitial
 
   getCurrentPane: ->
     @bottomDock.getCurrentPane()

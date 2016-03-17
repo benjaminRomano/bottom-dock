@@ -1,3 +1,7 @@
+## 0.4.1
+* Removed close button. It was cauisng more confusion than helping.
+* Fixed bottom-dock not showing after adding pane. (Added isInitial)
+
 ## 0.4.0
 * Added status bar element to display status of bottom-dock.
 * Added paneCount and onDidAddPane to bottom-dock-service

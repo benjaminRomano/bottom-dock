@@ -25,7 +25,7 @@ class BottomDockService {
   changePane(id: string): void
   deletePane(id: string): void
   getPane(id: string): Pane //Where Pane extends DockPaneView
-  addPane(pane: Pane, tab: TabButton): void
+  addPane(pane: Pane, tab: TabButton, isInitial?: boolean): void
   getCurrentPane(): Pane
   deleteCurrentPane: void
   onDidChangePane(callback: (id: string) => void): Disposable

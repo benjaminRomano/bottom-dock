@@ -20,8 +20,6 @@ class BottomDock extends View
     @emitter = new Emitter()
 
     @subscriptions.add @tabManager.onTabClicked @changePane
-    @subscriptions.add @tabManager.onDeleteClicked @deletePane
-    @subscriptions.add @header.onDidClickDelete @deleteCurrentPane
 
   onDidFinishResizing: (callback) ->
     @header.onDidFinishResizing callback
@@ -38,12 +36,15 @@ class BottomDock extends View
   onDidToggle: (callback) ->
     @emitter.on 'pane:toggled', callback
 
-  addPane: (pane, title) ->
+  addPane: (pane, title, isInitial) ->
     @dockPaneManager.addPane pane
 
     config =
       title: title
       id: pane.getId()
+      
+    if not isInitial
+      @panel.show()
 
     @tabManager.addTab config
 

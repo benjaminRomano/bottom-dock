@@ -6,11 +6,6 @@ class Header extends View
     @div class: 'bottom-dock-header', =>
       @div outlet: 'resizeHandle', class: 'dock-resize-handle'
       @span outlet: 'title', class: 'title'
-      @div outlet: 'buttonContainer', class: 'button-container', =>
-        @span outlet: 'deleteButton', click: 'deleteClicked', class: 'delete-button icon icon-x'
-
-  deleteClicked: =>
-    @emitter.emit 'header:delete:clicked'
 
   setTitle: (title) =>
     @title.text title
@@ -19,9 +14,6 @@ class Header extends View
     @setTitle title if title?
     @handleEvents()
     @emitter = new Emitter()
-
-  onDidClickDelete: (callback) ->
-    @emitter.on 'header:delete:clicked', callback
 
   resizeStarted: =>
     $(document).on 'mousemove', @resizePane
