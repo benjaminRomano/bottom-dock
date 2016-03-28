@@ -29,26 +29,15 @@ module.exports =
     @subscriptions.add atom.commands.add 'atom-workspace',
      'bottom-dock:delete': => @bottomDock.deleteCurrentPane()
 
-    # Subscribe to add/delete events for status count
-    @subscriptions.add @bottomDock.onDidAddPane =>
-      @statusBarTile?.item.updateCount @bottomDock.paneCount()
-
-    @subscriptions.add @bottomDock.onDidDeletePane =>
-      @statusBarTile?.item.updateCount @bottomDock.paneCount()
-
     # Subscribe to config for status visiblity
     @subscriptions.add atom.config.onDidChange 'bottom-dock.showStatus', ({newValue}) =>
       @statusBarTile?.item.setVisiblity newValue
 
-    # Subscribe to bottom-dock visiblity
-    @subscriptions.add @bottomDock.onDidToggle (value) =>
-      @statusBarTile?.item.setBottomDockVisibility value
-
   consumeStatusBar: (statusBar) ->
+    console.log @bottomDock.active
+    
     config =
       visible: atom.config.get 'bottom-dock.showStatus'
-      paneCount: @bottomDock.paneCount()
-      bottomDockVisible: @bottomDock.active
 
     @statusBarTile = statusBar.addRightTile item: new Status config , priority: 2
 

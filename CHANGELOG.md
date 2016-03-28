@@ -1,3 +1,6 @@
+## 0.4.2
+* Removed parantheses and icon from status bar tile
+
 ## 0.4.1
 * Removed close button. It was cauisng more confusion than helping.
 * Fixed bottom-dock not showing after adding pane. (Added isInitial)

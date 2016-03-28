@@ -4,26 +4,16 @@
 class Status extends View
   @content: (config) ->
     @div class: 'bottom-dock-status-container inline-block', style: 'display: inline-block', =>
-      @span outlet: 'visibilityIcon', class: 'visibility-icon icon icon-eye'
-      @span outlet: 'countText'
+      @span 'Bottom Dock'
 
   initialize: (config) ->
     @emitter = new Emitter
 
     @setVisiblity config.visible
-    @updateCount config.paneCount
-    @setBottomDockVisibility config.bottomDockVisible
+    console.log config.bottomDockVisible
 
     @on 'click', @toggleClicked
 
-  updateCount: (count) =>
-    @countText.text "Bottom Dock (#{count})"
-
-  setBottomDockVisibility: (value) =>
-    if value and not @visibilityIcon.hasClass 'active'
-      @visibilityIcon.addClass 'active'
-    else
-      @visibilityIcon.removeClass 'active'
 
   setVisiblity: (value) =>
     if value
