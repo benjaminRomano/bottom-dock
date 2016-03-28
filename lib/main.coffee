@@ -8,7 +8,7 @@ Status = require './views/status'
 module.exports =
   config:
     showStatus:
-      title: 'Show pane count in status bar'
+      title: 'Show bottom-dock toggle in status bar'
       type: 'boolean'
       default: true
     startOpen:

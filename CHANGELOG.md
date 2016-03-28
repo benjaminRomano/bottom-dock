@@ -1,3 +1,6 @@
+## 0.4.4
+* Fixed option text in bottom-dock settings
+
 ## 0.4.3
 * Removed console.log statements
 
