@@ -34,7 +34,6 @@ module.exports =
       @statusBarTile?.item.setVisiblity newValue
 
   consumeStatusBar: (statusBar) ->
-    console.log @bottomDock.active
     
     config =
       visible: atom.config.get 'bottom-dock.showStatus'

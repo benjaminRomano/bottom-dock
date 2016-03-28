@@ -10,7 +10,6 @@ class Status extends View
     @emitter = new Emitter
 
     @setVisiblity config.visible
-    console.log config.bottomDockVisible
 
     @on 'click', @toggleClicked
 

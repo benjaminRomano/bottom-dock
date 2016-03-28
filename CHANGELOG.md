@@ -1,3 +1,6 @@
+## 0.4.3
+* Removed console.log statements
+
 ## 0.4.2
 * Removed parantheses and icon from status bar tile
 
